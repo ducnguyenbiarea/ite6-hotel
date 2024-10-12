@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import {useState} from 'react'
 import {getRoomTypes} from "../utils/ApiFunctions"
 
 const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
@@ -25,7 +26,7 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
 
     return (
         <>
-{roomTypes.length > 0 && (
+{RoomTypes.length > 0 && (
     <div>
     <select
     id='roomType'
@@ -40,7 +41,7 @@ const RoomTypeSelector = ({handleRoomInputChange, newRoom}) => {
     }}>
         <option value={""}> select a room type</option>
         <option value={"Add New"}> Add New</option>
-        {roomTypes.map((type, index)=>(
+        {RoomTypes.map((type, index)=>(
             <option key={index} value={type}>
                 {type}
             </option>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {addRoom} from "../utils/ApiFunctions"
 import RoomTypeSelector from '../common/RoomTypeSelector'
 const AddRoom = () => {
@@ -11,17 +11,18 @@ const AddRoom = () => {
     const[successMessage, setSuccessMessage] = useState("")
     const[errorMessage, setErrorMessage] = useState("")
     
-    const handleRoomInPutChange = (e) => {
+    const handleRoomInputChange = (e) => {
         const name = e.target.name
         let value = e.target.value
+        const parsedValue = parseInt(value, 10)
         if(name === "roomPrice"){
             if(!isNaN(value)){
-                value.parseInt(value) 
+                value = parsedValue
             }else{
-            value =""
+            value = ""
+            }
         }
-            setNewRoom({...newRoom, [name]: value})  
-        }
+        setNewRoom({...newRoom, [name]: value})  
     }
 
     const handleImageChange = (e) => {
@@ -47,7 +48,7 @@ const AddRoom = () => {
         }
     }
     return (
-        
+     <> 
     <section className="container, mt-5 mb-5">
         <div className="row justify-content-center">
             <div className="col-md-8 col-lg-6">
@@ -58,7 +59,7 @@ const AddRoom = () => {
                         Room Type
                     </label>
                 <div>
-                    <RoomTypeSelector handleRoomInputChange={handleRoomInPutChange} newRoom={newRoom}/>
+                    <RoomTypeSelector handleRoomInputChange={handleRoomInputChange} newRoom={newRoom}/>
                 </div>
                 </div>
 
@@ -105,7 +106,7 @@ const AddRoom = () => {
               </div>
         </div>
     </section>
-        
+        </>
     )
 }
 export default AddRoom
